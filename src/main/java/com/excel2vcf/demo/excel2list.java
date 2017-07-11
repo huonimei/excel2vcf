@@ -4,8 +4,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.Test;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -55,9 +53,9 @@ public class excel2list {
         retmap.put("numlist", sb);
         return retmap;
     }
-
+/*
     @Test
     public void testfun() throws IOException, InvalidFormatException {
         string2files(getcontent(getexcelcontent()));
-    }
+    }*/
 }
