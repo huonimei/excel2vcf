@@ -4,8 +4,11 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,11 +54,33 @@ public class excel2list {
         }
         retmap.put("namelist", namelist);
         retmap.put("numlist", sb);
+        retmap.put("oldnamelist", numlist);
         return retmap;
     }
-/*
+
+    //一个遍历excel中所有格子的方法
+    public void getAllCells() {
+        File files = new File("e:\\workbook.xlsx");
+        List<Object> namelist = new ArrayList<>();//存名字列
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(files));//新建工作簿
+            XSSFSheet sheet = null;
+            for (int i = 0; i < workbook.getNumberOfSheets(); i++) {//遍历sheet页
+                sheet = workbook.getSheetAt(i);
+                for (int j = 0; j < sheet.getPhysicalNumberOfRows(); j++) {//遍历每一行
+                    XSSFRow row = sheet.getRow(j);
+                    for (int k = 0; k < row.getPhysicalNumberOfCells(); k++) {//遍历每一行的格子
+                        namelist.add(row.getCell(k));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void testfun() throws IOException, InvalidFormatException {
-        string2files(getcontent(getexcelcontent()));
-    }*/
+        getAllCells();
+    }
 }
